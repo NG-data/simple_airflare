@@ -1,0 +1,49 @@
+[2025-07-07T09:08:56.892+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-07-07T09:08:56.904+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_airflare_data.load manual__2025-07-07T09:06:48.562373+00:00 [queued]>
+[2025-07-07T09:08:56.909+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_airflare_data.load manual__2025-07-07T09:06:48.562373+00:00 [queued]>
+[2025-07-07T09:08:56.909+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 3
+[2025-07-07T09:08:56.918+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): load> on 2025-07-07 09:06:48.562373+00:00
+[2025-07-07T09:08:56.925+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=675) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-07T09:08:56.927+0000] {standard_task_runner.py:63} INFO - Started process 677 to run task
+[2025-07-07T09:08:56.927+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'ETL_airflare_data', 'load', 'manual__2025-07-07T09:06:48.562373+00:00', '--job-id', '137', '--raw', '--subdir', 'DAGS_FOLDER/Untitled-1.py', '--cfg-path', '/tmp/tmpyshs6r4r']
+[2025-07-07T09:08:56.929+0000] {standard_task_runner.py:91} INFO - Job 137: Subtask load
+[2025-07-07T09:08:56.977+0000] {task_command.py:426} INFO - Running <TaskInstance: ETL_airflare_data.load manual__2025-07-07T09:06:48.562373+00:00 [running]> on host e6a32b72ede0
+[2025-07-07T09:08:57.047+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_airflare_data' AIRFLOW_CTX_TASK_ID='load' AIRFLOW_CTX_EXECUTION_DATE='2025-07-07T09:06:48.562373+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-07T09:06:48.562373+00:00'
+[2025-07-07T09:08:57.048+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-07-07T09:08:57.067+0000] {Untitled-1.py:43} INFO - Создание подключения к S3
+[2025-07-07T09:08:57.069+0000] {Untitled-1.py:46} INFO - Подключение установлено, загрузка данных из S3
+[2025-07-07T09:08:57.077+0000] {base.py:84} INFO - Using connection ID 'minio' for task execution.
+[2025-07-07T09:08:57.078+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio', conn_type='aws') credentials retrieved from login and password.
+[2025-07-07T09:08:57.246+0000] {Untitled-1.py:51} INFO - Данные выгружены из S3
+[2025-07-07T09:08:57.247+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-07-07T09:08:57.247+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/Untitled-1.py", line 123, in load
+    content = load_from_s3(bucket=path['bucket'], key=path['key'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/Untitled-1.py", line 52, in load_from_s3
+    return dict(data)
+           ^^^^^^^^^^
+ValueError: dictionary update sequence element #0 has length 1; 2 is required
+[2025-07-07T09:08:57.257+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ETL_airflare_data, task_id=load, run_id=manual__2025-07-07T09:06:48.562373+00:00, execution_date=20250707T090648, start_date=20250707T090856, end_date=20250707T090857
+[2025-07-07T09:08:57.266+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 137 for task load (dictionary update sequence element #0 has length 1; 2 is required; 677)
+[2025-07-07T09:08:57.301+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2025-07-07T09:08:57.315+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-07-07T09:08:57.316+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

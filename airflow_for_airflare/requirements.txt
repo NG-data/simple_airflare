@@ -8,3 +8,4 @@ requests
 pandas
 sqlalchemy
 psycopg2-binary
+apache-airflow-providers-amazon

@@ -15,4 +15,8 @@ services:
 volumes:
   postgres_data:
   dump_files:
-      
+
+networks:
+  default:
+    external:
+      name: shared_network

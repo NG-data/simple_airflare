@@ -135,6 +135,9 @@ services:
 
 networks:
   default:
+    external:
+      name: shared_network
+
 
 volumes:
   postgres-db-volume:

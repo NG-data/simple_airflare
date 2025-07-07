@@ -1,0 +1,42 @@
+[2025-07-07T07:51:42.829+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-07-07T07:51:42.842+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_airflare_data_test.transform manual__2025-07-07T07:47:31.819550+00:00 [queued]>
+[2025-07-07T07:51:42.848+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_airflare_data_test.transform manual__2025-07-07T07:47:31.819550+00:00 [queued]>
+[2025-07-07T07:51:42.849+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 3
+[2025-07-07T07:51:42.861+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): transform> on 2025-07-07 07:47:31.819550+00:00
+[2025-07-07T07:51:42.870+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=88) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-07T07:51:42.871+0000] {standard_task_runner.py:63} INFO - Started process 90 to run task
+[2025-07-07T07:51:42.871+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'ETL_airflare_data_test', 'transform', 'manual__2025-07-07T07:47:31.819550+00:00', '--job-id', '88', '--raw', '--subdir', 'DAGS_FOLDER/Untitled-1.py', '--cfg-path', '/tmp/tmpb6owxyxs']
+[2025-07-07T07:51:42.873+0000] {standard_task_runner.py:91} INFO - Job 88: Subtask transform
+[2025-07-07T07:51:42.926+0000] {task_command.py:426} INFO - Running <TaskInstance: ETL_airflare_data_test.transform manual__2025-07-07T07:47:31.819550+00:00 [running]> on host e6a32b72ede0
+[2025-07-07T07:51:42.996+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_airflare_data_test' AIRFLOW_CTX_TASK_ID='transform' AIRFLOW_CTX_EXECUTION_DATE='2025-07-07T07:47:31.819550+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-07T07:47:31.819550+00:00'
+[2025-07-07T07:51:42.997+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-07-07T07:51:43.017+0000] {Untitled-1.py:81} INFO - данные приняты из Xcom, начат процесс очистки
+[2025-07-07T07:51:43.017+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-07-07T07:51:43.018+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/Untitled-1.py", line 83, in transform
+    df = pd.DataFrame(path['data'])
+                      ~~~~^^^^^^^^
+TypeError: string indices must be integers, not 'str'
+[2025-07-07T07:51:43.027+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ETL_airflare_data_test, task_id=transform, run_id=manual__2025-07-07T07:47:31.819550+00:00, execution_date=20250707T074731, start_date=20250707T075142, end_date=20250707T075143
+[2025-07-07T07:51:43.037+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 88 for task transform (string indices must be integers, not 'str'; 90)
+[2025-07-07T07:51:43.085+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2025-07-07T07:51:43.103+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-07-07T07:51:43.106+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
