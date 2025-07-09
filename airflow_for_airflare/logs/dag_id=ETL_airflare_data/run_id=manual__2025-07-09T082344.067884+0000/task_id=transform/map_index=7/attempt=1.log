@@ -1,0 +1,35 @@
+[2025-07-09T08:23:54.878+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-07-09T08:23:54.915+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_airflare_data.transform manual__2025-07-09T08:23:44.067884+00:00 map_index=7 [queued]>
+[2025-07-09T08:23:54.929+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_airflare_data.transform manual__2025-07-09T08:23:44.067884+00:00 map_index=7 [queued]>
+[2025-07-09T08:23:54.929+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2025-07-09T08:23:54.947+0000] {taskinstance.py:2330} INFO - Executing <Mapped(_PythonDecoratedOperator): transform> on 2025-07-09 08:23:44.067884+00:00
+[2025-07-09T08:23:54.964+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=7964) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-09T08:23:54.967+0000] {standard_task_runner.py:63} INFO - Started process 7998 to run task
+[2025-07-09T08:23:54.972+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'ETL_airflare_data', 'transform', 'manual__2025-07-09T08:23:44.067884+00:00', '--job-id', '710', '--raw', '--subdir', 'DAGS_FOLDER/Untitled-1.py', '--cfg-path', '/tmp/tmp3msogs1v', '--map-index', '7']
+[2025-07-09T08:23:54.978+0000] {standard_task_runner.py:91} INFO - Job 710: Subtask transform
+[2025-07-09T08:23:55.101+0000] {task_command.py:426} INFO - Running <TaskInstance: ETL_airflare_data.transform manual__2025-07-09T08:23:44.067884+00:00 map_index=7 [running]> on host e6a32b72ede0
+[2025-07-09T08:23:55.299+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_airflare_data' AIRFLOW_CTX_TASK_ID='transform' AIRFLOW_CTX_EXECUTION_DATE='2025-07-09T08:23:44.067884+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-09T08:23:44.067884+00:00'
+[2025-07-09T08:23:55.307+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-07-09T08:23:55.319+0000] {Untitled-1.py:160} INFO - Данные приняты из Xcom, начат процесс очистки
+[2025-07-09T08:23:55.320+0000] {Untitled-1.py:92} INFO - Создание подключения к S3
+[2025-07-09T08:23:55.322+0000] {Untitled-1.py:96} INFO - Подключение установлено, загрузка данных из S3
+[2025-07-09T08:23:55.338+0000] {base.py:84} INFO - Using connection ID 'minio' for task execution.
+[2025-07-09T08:23:55.348+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio', conn_type='aws') credentials retrieved from login and password.
+[2025-07-09T08:23:55.604+0000] {Untitled-1.py:102} INFO - Данные выгружены из S3
+[2025-07-09T08:23:55.614+0000] {Untitled-1.py:169} INFO - Преобразование завершено, начинается передача DF в S3
+[2025-07-09T08:23:55.618+0000] {Untitled-1.py:62} INFO - Создание подключения к S3
+[2025-07-09T08:23:55.618+0000] {Untitled-1.py:65} INFO - Подключение установлено
+[2025-07-09T08:23:55.642+0000] {base.py:84} INFO - Using connection ID 'minio' for task execution.
+[2025-07-09T08:23:55.643+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio', conn_type='aws') credentials retrieved from login and password.
+[2025-07-09T08:23:56.390+0000] {Untitled-1.py:71} INFO - Загрузка данных в S3
+[2025-07-09T08:23:57.016+0000] {Untitled-1.py:82} INFO - Загрузка завершена успешно
+[2025-07-09T08:23:57.017+0000] {Untitled-1.py:177} INFO - Данные успешно сохранены в S3, передаю их в Xcom
+[2025-07-09T08:23:57.017+0000] {Untitled-1.py:179} INFO - данные успешно очищены и записаны в хранилище
+[2025-07-09T08:23:57.017+0000] {python.py:237} INFO - Done. Returned value was: {'path': {'bucket': 'airflare', 'key': 'temp/df_LED_IKT.json'}, 'rout': {'origin': 'LED', 'destination': 'IKT', 'bd': 'Санкт_Петербург_Иркутск_return'}}
+[2025-07-09T08:23:57.018+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-07-09T08:23:57.044+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ETL_airflare_data, task_id=transform, run_id=manual__2025-07-09T08:23:44.067884+00:00, map_index=7, execution_date=20250709T082344, start_date=20250709T082354, end_date=20250709T082357
+[2025-07-09T08:23:57.222+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-07-09T08:23:57.258+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-07-09T08:23:57.263+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

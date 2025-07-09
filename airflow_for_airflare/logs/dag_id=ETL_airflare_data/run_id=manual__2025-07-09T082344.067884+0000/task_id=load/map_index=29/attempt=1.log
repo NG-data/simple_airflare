@@ -1,0 +1,41 @@
+[2025-07-09T08:24:06.751+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-07-09T08:24:06.795+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_airflare_data.load manual__2025-07-09T08:23:44.067884+00:00 map_index=29 [queued]>
+[2025-07-09T08:24:06.824+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_airflare_data.load manual__2025-07-09T08:23:44.067884+00:00 map_index=29 [queued]>
+[2025-07-09T08:24:06.825+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2025-07-09T08:24:06.845+0000] {taskinstance.py:2330} INFO - Executing <Mapped(_PythonDecoratedOperator): load> on 2025-07-09 08:23:44.067884+00:00
+[2025-07-09T08:24:06.865+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=8175) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-09T08:24:06.867+0000] {standard_task_runner.py:63} INFO - Started process 8215 to run task
+[2025-07-09T08:24:06.869+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'ETL_airflare_data', 'load', 'manual__2025-07-09T08:23:44.067884+00:00', '--job-id', '769', '--raw', '--subdir', 'DAGS_FOLDER/Untitled-1.py', '--cfg-path', '/tmp/tmpytmuvupn', '--map-index', '29']
+[2025-07-09T08:24:06.875+0000] {standard_task_runner.py:91} INFO - Job 769: Subtask load
+[2025-07-09T08:24:06.982+0000] {task_command.py:426} INFO - Running <TaskInstance: ETL_airflare_data.load manual__2025-07-09T08:23:44.067884+00:00 map_index=29 [running]> on host e6a32b72ede0
+[2025-07-09T08:24:07.140+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_airflare_data' AIRFLOW_CTX_TASK_ID='load' AIRFLOW_CTX_EXECUTION_DATE='2025-07-09T08:23:44.067884+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-09T08:23:44.067884+00:00'
+[2025-07-09T08:24:07.142+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-07-09T08:24:07.143+0000] {Untitled-1.py:186} INFO - Данные из Xcom успешно выгружены, начинаю выгружать данные из S3
+[2025-07-09T08:24:07.143+0000] {Untitled-1.py:92} INFO - Создание подключения к S3
+[2025-07-09T08:24:07.144+0000] {Untitled-1.py:96} INFO - Подключение установлено, загрузка данных из S3
+[2025-07-09T08:24:07.157+0000] {base.py:84} INFO - Using connection ID 'minio' for task execution.
+[2025-07-09T08:24:07.160+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio', conn_type='aws') credentials retrieved from login and password.
+[2025-07-09T08:24:07.382+0000] {Untitled-1.py:102} INFO - Данные выгружены из S3
+[2025-07-09T08:24:07.388+0000] {Untitled-1.py:196} INFO - Данные получены из хранилища, начат процесс отправки в БД
+[2025-07-09T08:24:07.405+0000] {base.py:84} INFO - Using connection ID 'postgres_airfare' for task execution.
+[2025-07-09T08:24:07.407+0000] {Untitled-1.py:204} INFO - Размер DataFrame: (188, 9)
+[2025-07-09T08:24:07.410+0000] {Untitled-1.py:206} INFO - Типы данных:
+depart_date          object
+origin               object
+destination          object
+trip_class            int64
+value                 int64
+gate                 object
+duration              int64
+distance              int64
+number_of_changes     int64
+dtype: object
+[2025-07-09T08:24:07.411+0000] {Untitled-1.py:208} INFO - Связь с БД установлена
+[2025-07-09T08:24:07.455+0000] {Untitled-1.py:215} INFO - процесс ETL успешно завершен, данные загружены в БД
+[2025-07-09T08:24:07.456+0000] {python.py:237} INFO - Done. Returned value was: None
+[2025-07-09T08:24:07.457+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-07-09T08:24:07.474+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ETL_airflare_data, task_id=load, run_id=manual__2025-07-09T08:23:44.067884+00:00, map_index=29, execution_date=20250709T082344, start_date=20250709T082406, end_date=20250709T082407
+[2025-07-09T08:24:07.542+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-07-09T08:24:07.561+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

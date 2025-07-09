@@ -1,0 +1,46 @@
+[2025-07-09T05:49:49.222+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-07-09T05:49:49.239+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_airflare_data.transform manual__2025-07-09T05:49:23.137455+00:00 map_index=3 [queued]>
+[2025-07-09T05:49:49.246+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_airflare_data.transform manual__2025-07-09T05:49:23.137455+00:00 map_index=3 [queued]>
+[2025-07-09T05:49:49.246+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2025-07-09T05:49:49.256+0000] {taskinstance.py:2330} INFO - Executing <Mapped(_PythonDecoratedOperator): transform> on 2025-07-09 05:49:23.137455+00:00
+[2025-07-09T05:49:49.265+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=4447) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-09T05:49:49.267+0000] {standard_task_runner.py:63} INFO - Started process 4456 to run task
+[2025-07-09T05:49:49.268+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'ETL_airflare_data', 'transform', 'manual__2025-07-09T05:49:23.137455+00:00', '--job-id', '327', '--raw', '--subdir', 'DAGS_FOLDER/Untitled-1.py', '--cfg-path', '/tmp/tmpxi9k3ty4', '--map-index', '3']
+[2025-07-09T05:49:49.269+0000] {standard_task_runner.py:91} INFO - Job 327: Subtask transform
+[2025-07-09T05:49:49.325+0000] {task_command.py:426} INFO - Running <TaskInstance: ETL_airflare_data.transform manual__2025-07-09T05:49:23.137455+00:00 map_index=3 [running]> on host e6a32b72ede0
+[2025-07-09T05:49:49.417+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_airflare_data' AIRFLOW_CTX_TASK_ID='transform' AIRFLOW_CTX_EXECUTION_DATE='2025-07-09T05:49:23.137455+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-09T05:49:23.137455+00:00'
+[2025-07-09T05:49:49.419+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-07-09T05:49:49.419+0000] {Untitled-1.py:137} INFO - Данные приняты из Xcom, начат процесс очистки
+[2025-07-09T05:49:49.420+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-07-09T05:49:49.420+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/Untitled-1.py", line 138, in transform
+    logging.info()
+TypeError: info() missing 1 required positional argument: 'msg'
+[2025-07-09T05:49:49.433+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=ETL_airflare_data, task_id=transform, run_id=manual__2025-07-09T05:49:23.137455+00:00, map_index=3, execution_date=20250709T054923, start_date=20250709T054949, end_date=20250709T054949
+[2025-07-09T05:49:49.444+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 327 for task transform (info() missing 1 required positional argument: 'msg'; 4456)
+[2025-07-09T05:49:49.481+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2025-07-09T05:49:49.497+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

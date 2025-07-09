@@ -1,0 +1,29 @@
+[2025-07-09T07:27:05.455+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-07-09T07:27:05.477+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_airflare_data.extract scheduled__2025-07-07T12:00:00+00:00 map_index=4 [queued]>
+[2025-07-09T07:27:05.486+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_airflare_data.extract scheduled__2025-07-07T12:00:00+00:00 map_index=4 [queued]>
+[2025-07-09T07:27:05.487+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2025-07-09T07:27:05.500+0000] {taskinstance.py:2330} INFO - Executing <Mapped(_PythonDecoratedOperator): extract> on 2025-07-07 12:00:00+00:00
+[2025-07-09T07:27:05.512+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=6590) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-09T07:27:05.515+0000] {standard_task_runner.py:63} INFO - Started process 6613 to run task
+[2025-07-09T07:27:05.516+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'ETL_airflare_data', 'extract', 'scheduled__2025-07-07T12:00:00+00:00', '--job-id', '575', '--raw', '--subdir', 'DAGS_FOLDER/Untitled-1.py', '--cfg-path', '/tmp/tmpwzpnyazz', '--map-index', '4']
+[2025-07-09T07:27:05.517+0000] {standard_task_runner.py:91} INFO - Job 575: Subtask extract
+[2025-07-09T07:27:05.600+0000] {task_command.py:426} INFO - Running <TaskInstance: ETL_airflare_data.extract scheduled__2025-07-07T12:00:00+00:00 map_index=4 [running]> on host e6a32b72ede0
+[2025-07-09T07:27:05.695+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_airflare_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2025-07-07T12:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-07-07T12:00:00+00:00'
+[2025-07-09T07:27:05.697+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-07-09T07:27:05.697+0000] {Untitled-1.py:116} INFO - Начало извлечения данных для направления IKT-AER
+[2025-07-09T07:27:06.492+0000] {Untitled-1.py:39} INFO - Создание подключения к S3
+[2025-07-09T07:27:06.494+0000] {Untitled-1.py:44} INFO - Подключение установлено
+[2025-07-09T07:27:06.510+0000] {base.py:84} INFO - Using connection ID 'minio' for task execution.
+[2025-07-09T07:27:06.514+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio', conn_type='aws') credentials retrieved from login and password.
+[2025-07-09T07:27:06.966+0000] {Untitled-1.py:50} INFO - Загрузка данных в S3
+[2025-07-09T07:27:07.100+0000] {Untitled-1.py:61} INFO - Загрузка завершена успешно
+[2025-07-09T07:27:07.101+0000] {Untitled-1.py:129} INFO - Данные успешно сохранены во временное хранилище
+[2025-07-09T07:27:07.101+0000] {Untitled-1.py:130} INFO - Данные успешно извлечены и переданы в Xcom
+[2025-07-09T07:27:07.103+0000] {python.py:237} INFO - Done. Returned value was: {'path': {'bucket': 'airflare', 'key': 'temp/response_IKT_AER.json'}, 'rout': {'origin': 'IKT', 'destination': 'AER', 'bd': 'ikt_aer_outbound'}}
+[2025-07-09T07:27:07.106+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-07-09T07:27:07.126+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ETL_airflare_data, task_id=extract, run_id=scheduled__2025-07-07T12:00:00+00:00, map_index=4, execution_date=20250707T120000, start_date=20250709T072705, end_date=20250709T072707
+[2025-07-09T07:27:07.176+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-07-09T07:27:07.199+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-07-09T07:27:07.232+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
