@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: clickhouse_for_airflare
+    ports:
+      - "8123:8123"    # HTTP интерфейс
+      - "9005:9000"
+    volumes:
+      - ./clickhouse_data:/var/lib/clickhouse             # Данные
+      - ./clickhouse_logs:/var/log/clickhouse-server      # Логи
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    environment:
+      - CLICKHOUSE_DB=airflare
+      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_PASSWORD=default
+
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: shared_network

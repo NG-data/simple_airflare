@@ -39,3 +39,92 @@ dtype: object
 [2025-07-09T07:27:12.388+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ETL_airflare_data, task_id=load, run_id=scheduled__2025-07-07T12:00:00+00:00, map_index=7, execution_date=20250707T120000, start_date=20250709T072711, end_date=20250709T072712
 [2025-07-09T07:27:12.460+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
 [2025-07-09T07:27:12.472+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2025-07-09T11:25:16.676+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-07-09T11:25:16.719+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_airflare_data.load scheduled__2025-07-07T12:00:00+00:00 map_index=7 [queued]>
+[2025-07-09T11:25:16.736+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_airflare_data.load scheduled__2025-07-07T12:00:00+00:00 map_index=7 [queued]>
+[2025-07-09T11:25:16.736+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2025-07-09T11:25:16.762+0000] {taskinstance.py:2330} INFO - Executing <Mapped(_PythonDecoratedOperator): load> on 2025-07-07 12:00:00+00:00
+[2025-07-09T11:25:16.778+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=21650) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-09T11:25:16.781+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'ETL_airflare_data', 'load', 'scheduled__2025-07-07T12:00:00+00:00', '--job-id', '3349', '--raw', '--subdir', 'DAGS_FOLDER/Untitled-1.py', '--cfg-path', '/tmp/tmpozh3hmb5', '--map-index', '7']
+[2025-07-09T11:25:16.783+0000] {standard_task_runner.py:63} INFO - Started process 21674 to run task
+[2025-07-09T11:25:16.783+0000] {standard_task_runner.py:91} INFO - Job 3349: Subtask load
+[2025-07-09T11:25:16.944+0000] {task_command.py:426} INFO - Running <TaskInstance: ETL_airflare_data.load scheduled__2025-07-07T12:00:00+00:00 map_index=7 [running]> on host e6a32b72ede0
+[2025-07-09T11:25:17.095+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_airflare_data' AIRFLOW_CTX_TASK_ID='load' AIRFLOW_CTX_EXECUTION_DATE='2025-07-07T12:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-07-07T12:00:00+00:00'
+[2025-07-09T11:25:17.097+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-07-09T11:25:17.098+0000] {Untitled-1.py:70} INFO - Создание подключения к S3
+[2025-07-09T11:25:17.113+0000] {base.py:84} INFO - Using connection ID 'minio' for task execution.
+[2025-07-09T11:25:17.115+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio', conn_type='aws') credentials retrieved from login and password.
+[2025-07-09T11:25:17.761+0000] {Untitled-1.py:77} INFO - Подключение установлено
+[2025-07-09T11:25:17.765+0000] {Untitled-1.py:81} INFO - Подключение установлено, загрузка данных из S3
+[2025-07-09T11:25:17.995+0000] {Untitled-1.py:87} INFO - Данные выгружены из S3
+[2025-07-09T11:25:17.998+0000] {Untitled-1.py:181} INFO - Данные получены из хранилища, начат процесс отправки в БД
+[2025-07-09T11:25:18.012+0000] {base.py:84} INFO - Using connection ID 'postgres_airfare' for task execution.
+[2025-07-09T11:25:18.013+0000] {Untitled-1.py:189} INFO - Проверяю подключение к postgres
+[2025-07-09T11:25:18.023+0000] {base.py:84} INFO - Using connection ID 'postgres_airfare' for task execution.
+[2025-07-09T11:25:18.031+0000] {logging_mixin.py:188} INFO - Соединение с PostgreSQL успешно. Результат запроса: (1,)
+[2025-07-09T11:25:18.032+0000] {Untitled-1.py:203} INFO - Размер DataFrame: (225, 10)
+[2025-07-09T11:25:18.034+0000] {Untitled-1.py:205} INFO - Типы данных:
+depart_date           object
+origin                object
+destination           object
+trip_class             int64
+value                  int64
+gate                  object
+duration               int64
+distance               int64
+number_of_changes      int64
+date_of_extraction    object
+dtype: object
+[2025-07-09T11:25:18.072+0000] {Untitled-1.py:213} INFO - процесс ETL успешно завершен, данные загружены в БД
+[2025-07-09T11:25:18.074+0000] {python.py:237} INFO - Done. Returned value was: None
+[2025-07-09T11:25:18.075+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-07-09T11:25:18.088+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ETL_airflare_data, task_id=load, run_id=scheduled__2025-07-07T12:00:00+00:00, map_index=7, execution_date=20250707T120000, start_date=20250709T112516, end_date=20250709T112518
+[2025-07-09T11:25:18.180+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-07-09T11:25:18.194+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2025-07-09T11:29:13.990+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-07-09T11:29:14.041+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_airflare_data.load scheduled__2025-07-07T12:00:00+00:00 map_index=7 [queued]>
+[2025-07-09T11:29:14.060+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_airflare_data.load scheduled__2025-07-07T12:00:00+00:00 map_index=7 [queued]>
+[2025-07-09T11:29:14.061+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2025-07-09T11:29:14.085+0000] {taskinstance.py:2330} INFO - Executing <Mapped(_PythonDecoratedOperator): load> on 2025-07-07 12:00:00+00:00
+[2025-07-09T11:29:14.103+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=22239) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-09T11:29:14.106+0000] {standard_task_runner.py:63} INFO - Started process 22279 to run task
+[2025-07-09T11:29:14.119+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'ETL_airflare_data', 'load', 'scheduled__2025-07-07T12:00:00+00:00', '--job-id', '3489', '--raw', '--subdir', 'DAGS_FOLDER/Untitled-1.py', '--cfg-path', '/tmp/tmpeg6sf96r', '--map-index', '7']
+[2025-07-09T11:29:14.122+0000] {standard_task_runner.py:91} INFO - Job 3489: Subtask load
+[2025-07-09T11:29:14.278+0000] {task_command.py:426} INFO - Running <TaskInstance: ETL_airflare_data.load scheduled__2025-07-07T12:00:00+00:00 map_index=7 [running]> on host e6a32b72ede0
+[2025-07-09T11:29:14.569+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_airflare_data' AIRFLOW_CTX_TASK_ID='load' AIRFLOW_CTX_EXECUTION_DATE='2025-07-07T12:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-07-07T12:00:00+00:00'
+[2025-07-09T11:29:14.573+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-07-09T11:29:14.576+0000] {Untitled-1.py:70} INFO - Создание подключения к S3
+[2025-07-09T11:29:14.612+0000] {base.py:84} INFO - Using connection ID 'minio' for task execution.
+[2025-07-09T11:29:14.618+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio', conn_type='aws') credentials retrieved from login and password.
+[2025-07-09T11:29:15.418+0000] {Untitled-1.py:77} INFO - Подключение установлено
+[2025-07-09T11:29:15.418+0000] {Untitled-1.py:81} INFO - Подключение установлено, загрузка данных из S3
+[2025-07-09T11:29:15.678+0000] {Untitled-1.py:87} INFO - Данные выгружены из S3
+[2025-07-09T11:29:15.684+0000] {Untitled-1.py:181} INFO - Данные получены из хранилища, начат процесс отправки в БД
+[2025-07-09T11:29:15.708+0000] {base.py:84} INFO - Using connection ID 'postgres_airfare' for task execution.
+[2025-07-09T11:29:15.711+0000] {Untitled-1.py:189} INFO - Проверяю подключение к postgres
+[2025-07-09T11:29:15.724+0000] {base.py:84} INFO - Using connection ID 'postgres_airfare' for task execution.
+[2025-07-09T11:29:15.744+0000] {logging_mixin.py:188} INFO - Соединение с PostgreSQL успешно. Результат запроса: (1,)
+[2025-07-09T11:29:15.748+0000] {Untitled-1.py:203} INFO - Размер DataFrame: (225, 10)
+[2025-07-09T11:29:15.755+0000] {Untitled-1.py:205} INFO - Типы данных:
+depart_date           object
+origin                object
+destination           object
+trip_class             int64
+value                  int64
+gate                  object
+duration               int64
+distance               int64
+number_of_changes      int64
+date_of_extraction    object
+dtype: object
+[2025-07-09T11:29:15.816+0000] {Untitled-1.py:213} INFO - процесс ETL успешно завершен, данные загружены в БД
+[2025-07-09T11:29:15.819+0000] {python.py:237} INFO - Done. Returned value was: None
+[2025-07-09T11:29:15.824+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-07-09T11:29:15.855+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ETL_airflare_data, task_id=load, run_id=scheduled__2025-07-07T12:00:00+00:00, map_index=7, execution_date=20250707T120000, start_date=20250709T112914, end_date=20250709T112915
+[2025-07-09T11:29:15.973+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-07-09T11:29:15.995+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-07-09T11:29:15.997+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
