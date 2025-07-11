@@ -82,7 +82,7 @@ def last_date_of_extraction(table):
         logging.error(f'Ошибка извлечения даты из CH, {e}')
 
 
-with DAG(dag_id='load_data_to_ClickHouse', default_args=default_args, schedule_interval='0 13 * * *', catchup=False, tags=['load_CH']) as dag:
+with DAG(dag_id='load_data_to_ClickHouse', default_args=default_args, schedule_interval='10 12 * * *', catchup=False, tags=['load_CH']) as dag:
 
     @task
     def load_from_postgres():  # Выгружает данные из postgres
