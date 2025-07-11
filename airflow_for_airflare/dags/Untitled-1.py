@@ -13,15 +13,14 @@ import logging  # Логирование
 import json  # Сериализация и десириализация json в строку для загрузки в S3
 
 # %%
+# Извлечение IATA кодов из БД
 hook = PostgresHook(postgres_conn_id='postgres_airfare')
 engine = hook.get_sqlalchemy_engine()
 iata_df = pd.read_sql('SELECT id, iata FROM iata_codes', con=engine)
 iata_dict = dict(zip(iata_df['iata'], iata_df['id']))
 
 # %%
-city_list = ['IKT', 'HKT', 'MOW', 'AER', 'LED', 'VVO', 'MLE', 'DXB', 'IST', 'AYT',
-             'NHA', 'SGN', 'HAN', 'TYO', 'KUL', 'PKX', 'PEK', 'RGK']  # Города назначения
-iata = {code: i for i, code in enumerate(city_list)}
+city_list = list(iata_df['iata'])  # Города назначения
 routs = []
 
 for i in range(1, len(city_list)):  # Генерирует комбинацию билетов туда-обратно
@@ -166,11 +165,13 @@ with DAG(dag_id='ETL_airflare_data', default_args=default_args, schedule_interva
         day_before_departure = day_before_departure.map(lambda x: x.days)
 
         df = pd.concat([df, cur_date, day_before_departure], axis=1)
-
         # замена IATA кодов на индексы для нормализации данных
         df['origin'] = df['origin'].map(iata_dict)
         df['destination'] = df['destination'].map(iata_dict)
-        upload_to_s3(df.to_json(index=False, orient='records'), 'df_now.json')
+
+        # Очищает DataFrame от случайно попавших IATA кодов
+        df.dropna(subset=['origin', 'destination'], inplace=True)
+
         logging.info(df['date_of_extraction'].dtype)
         logging.info(df['depart_date'].dtype)
 
