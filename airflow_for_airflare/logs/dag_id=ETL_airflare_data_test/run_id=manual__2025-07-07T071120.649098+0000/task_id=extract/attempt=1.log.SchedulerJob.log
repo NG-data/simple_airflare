@@ -1,1 +1,0 @@
-[2025-07-07T07:11:22.288+0000] {scheduler_job_runner.py:769} ERROR - Executor reports task instance <TaskInstance: ETL_airflare_data_test.extract manual__2025-07-07T07:11:20.649098+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

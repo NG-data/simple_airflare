@@ -1,5 +1,7 @@
 /ClickHouse_for_airflare/clickhouse_logs/
+/clickhouse_logs/
 /minio/local-folder/
+/local-folder/
 /data/
 /volume/
 /logs/
