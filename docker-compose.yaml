@@ -40,6 +40,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
+      - ./postgres_init:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
     healthcheck:
@@ -62,7 +63,7 @@ services:
       - "9005:9000"
     volumes:
       - ./clickhouse_logs:/var/log/clickhouse-server      # Логи
-      - ./clickhouse:/var/lib/clickhouse
+      - ./clickhouse_init:/docker-entrypoint-initdb.d
     environment:
       - CLICKHOUSE_DB=${CLICKHOUSE_DB}
       - CLICKHOUSE_USER=${CLICKHOUSE_USER}
