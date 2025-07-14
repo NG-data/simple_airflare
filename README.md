@@ -28,7 +28,7 @@
 1. Клонируйте репозиторий:
 ```bash
 git clone https://github.com/NG-data/simple_airflare.git
-cd HalltapeETL
+cd simple_airflare
 ```
 2. Запустить в директории проекта для того чтобы сделать init.sh исполняемым:
 ```bash
